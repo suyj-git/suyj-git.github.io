@@ -1,1 +1,0 @@
-# westrice.github.io
