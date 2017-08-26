@@ -1,6 +1,7 @@
 ---
 layout: note
 ---
+Notes for [Neural networks and deep learning](http://neuralnetworksanddeeplearning.com)
 
 ## Artificial Neuron
 
