@@ -22,7 +22,7 @@ Output = 1 otherwise
 If a small change in some weight or bias only causes a coresponding small change in ouput, learning is possible.
 But a network of perceptrons can't promise that. Thus sigmoid neuron is put forward.
 
-Instead of being just 0 and 1, output of a sigmoid neuron is $\sigma(w\cdot x)+b$.
+Instead of being just 0 and 1, output of a sigmoid neuron is $\sigma(w\cdot x+b)$.
 
 $\sigma(z)=\frac{1}{1+e^{-z}}$ is called activation function.
 
@@ -55,6 +55,20 @@ Because $\Delta C = \frac{\partial C}{\partial v_1}\Delta v_1+\frac{\partial C}{
 
 # Stochastic gradient descent
 Due to the possible great number of variables, the computation of $\Delta C$ will take very long time.
+
 So we can estimate $\Delta C = \frac{\sum \Delta C_x}{n} \approx  \frac{\sum^m_{j=1} \Delta C_{X_j}}{m}$ .
 $X_1,X_2,...,X_j$ are refered as mini-batch.
+
 After exhausting the training inputs by repeatedly training the network with different mini-batch, it is said to complete an epoch of training.
+
+## A Simple Handwritten Digits Classifier
+It can be found in [Github](https://github.com/mnielsen/neural-networks-and-deep-learning).
+Its typical usage(NumPy is required):
+{% highlight python %}
+import network
+import mnist_loader
+
+training_data,validation_data,test_data = mnist_loader.load_data_wrapper()
+net = network.Network([784, 30, 10])
+net.SGD(training_data,30,10,3.0,test_data=test_data)
+{% endhighlight %}
