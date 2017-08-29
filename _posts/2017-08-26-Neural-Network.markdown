@@ -62,6 +62,17 @@ $X_1,X_2,...,X_j$ are refered as mini-batch.
 
 After exhausting the training inputs by repeatedly training the network with different mini-batch, it is said to complete an epoch of training.
 
+#Backpropagation
+There two assumptions we need about the cost function:
+1. The cost function can be written as an average $C = \frac{1}{n} \sum_x C_x $over cost functions $C_x$ for individual training examples, $x$.
+2. Tt can be written as a function of the outputs from the neural network.
+
+Backpropagation is about understanding how changing the weights and biases in a network changes the cost function.
+We define the error $\delta^l_j$ of neuron $j$ in layer $l$ by
+$\delta^l_j=\frac{\partial C}{\partial z_j^l}$
+Here comes the four fundamental equations behind backpropagation:
+![Backprogation equations](http://neuralnetworksanddeeplearning.com/images/tikz21.png)
+
 ## A Simple Handwritten Digits Classifier
 It can be found in [Github](https://github.com/mnielsen/neural-networks-and-deep-learning).
 Its typical usage(NumPy is required):
