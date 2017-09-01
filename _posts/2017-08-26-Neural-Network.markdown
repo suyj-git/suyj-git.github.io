@@ -49,11 +49,41 @@ recurrent neural networks - in which neurons fire for some limited duration of t
 -------------------
 
 ## Learning Algorithm - Gradient descent
-cost function(loss or objective function)$C(w,b)=\frac{1}{2n}\sum ||y(x)-a||^2$ 
+# cost function
+It is also callde loss or objective function.Because $\Delta C = \frac{\partial C}{\partial v_1}\Delta v_1+\frac{\partial C}{\partial v_2}\Delta v_2$, we can make $\Delta v = -\eta \nabla C$,where $\eta$ is learning rate, to make C smaller.
 
-Because $\Delta C = \frac{\partial C}{\partial v_1}\Delta v_1+\frac{\partial C}{\partial v_2}\Delta v_2$, we can make $\Delta v = -\eta \nabla C$,where $\eta$ is learning rate, to make C smaller.
+Following are two typical cost functions:
+1. Quadratic cost function $C(w,b)=\frac{1}{2n}\sum ||y(x)-a||^2$ 
+2. Cross-entropy cost function $C = -\frac{1}{n} \sum_x \left[y \ln a + (1-y ) \ln (1-a) \right]$
+Cross-entropy cost function is better than quadratic cost function because it avoids the problem of learning slowing down.
+When $sigma(z)=\frac{1}{1+e^{-z}}$, in a network blow
+![a toy example of network](http://neuralnetworksanddeeplearning.com/images/tikz29.png)
+we can obtain
+$$
+\begin{eqnarray}
+  \frac{\partial C}{\partial w_j} & = & -\frac{1}{n} \sum_x \left(
+    \frac{y }{\sigma(z)} -\frac{(1-y)}{1-\sigma(z)} \right)
+  \frac{\partial \sigma}{\partial w_j} \\
+ & = & -\frac{1}{n} \sum_x \left( 
+    \frac{y}{\sigma(z)} 
+    -\frac{(1-y)}{1-\sigma(z)} \right)\sigma'(z) x_j \\
+  & = \frac{1}{n}
+  \sum_x \frac{\sigma'(z) x_j}{\sigma(z) (1-\sigma(z))}
+  (\sigma(z)-y) \\
+  & = \frac{1}{n} \sum_x x_j(\sigma(z)-y)
+\end{eqnarray}
+$$
+since $\sigma'(z) = \sigma(z)(1-\sigma(z))$.
 
-
+Exception: When neurons in the final layer are *linear neurons*, the quadratic cost will not give rise to any problems with a learning slowdown since 
+$$
+\begin{eqnarray}
+      \frac{\partial C}{\partial w^L_{jk}} & = & \frac{1}{n} \sum_x 
+      a^{L-1}_k  (a^L_j-y_j) \\
+      \frac{\partial C}{\partial b^L_{j}} & = & \frac{1}{n} \sum_x 
+      (a^L_j-y_j).
+}\end{eqnarray}
+$$
 # Stochastic gradient descent
 Due to the possible great number of variables, the computation of $\Delta C$ will take very long time.
 
@@ -65,7 +95,7 @@ After exhausting the training inputs by repeatedly training the network with dif
 #Backpropagation
 There two assumptions we need about the cost function:
 1. The cost function can be written as an average $C = \frac{1}{n} \sum_x C_x $over cost functions $C_x$ for individual training examples, $x$.
-2. Tt can be written as a function of the outputs from the neural network.
+2. It can be written as a function of the outputs from the neural network.
 
 Backpropagation is about understanding how changing the weights and biases in a network changes the cost function.
 We define the error $\delta^l_j$ of neuron $j$ in layer $l$ by
