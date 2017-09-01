@@ -63,30 +63,31 @@ When $\sigma(z)=\frac{1}{1+e^{-z}}$, in a network blow
 ![a toy example of network](http://neuralnetworksanddeeplearning.com/images/tikz29.png)
 we can obtain
 $$
-\begin{eqnarray}
-  \frac{\partial C}{\partial w_j} & = & -\frac{1}{n} \sum_x \left(
+\begin{align*}
+  \frac{\partial C}{\partial w_j} & =  -\frac{1}{n} \sum_x \left(
     \frac{y }{\sigma(z)} -\frac{(1-y)}{1-\sigma(z)} \right)
   \frac{\partial \sigma}{\partial w_j} \\
- & = & -\frac{1}{n} \sum_x \left( 
+ & =  -\frac{1}{n} \sum_x \left( 
     \frac{y}{\sigma(z)} 
     -\frac{(1-y)}{1-\sigma(z)} \right)\sigma'(z) x_j \\
-  & = &\frac{1}{n}
+  & = \frac{1}{n}
   \sum_x \frac{\sigma'(z) x_j}{\sigma(z) (1-\sigma(z))}
   (\sigma(z)-y) \\
-  & = &\frac{1}{n} \sum_x x_j(\sigma(z)-y)
-\end{eqnarray}
+  & = \frac{1}{n} \sum_x x_j(\sigma(z)-y)
+\end{align*}
 $$
 
 since \(\sigma'(z) = \sigma(z)(1-\sigma(z))\).
 
 Exception: When neurons in the final layer are *linear neurons*, the quadratic cost will not give rise to any problems with a learning slowdown since
 $$
-\begin{eqnarray}
-      \frac{\partial C}{\partial w^L_{jk}} & = & \frac{1}{n} \sum_x 
+\begin{align*}
+      \frac{\partial C}{\partial w^L_{jk}} & =  \frac{1}{n} \sum_x 
       a^{L-1}_k  (a^L_j-y_j) \\
-      \frac{\partial C}{\partial b^L_{j}} & = & \frac{1}{n} \sum_x 
+      \frac{\partial C}{\partial b^L_{j}} & =  \frac{1}{n} \sum_x 
       (a^L_j-y_j)
-}\end{eqnarray}
+}
+\end{align*}
 $$
 # Stochastic gradient descent
 Due to the possible great number of variables, the computation of $\Delta C$ will take very long time.
