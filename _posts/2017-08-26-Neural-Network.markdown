@@ -86,7 +86,6 @@ $$
       a^{L-1}_k  (a^L_j-y_j) \\
       \frac{\partial C}{\partial b^L_{j}} & =  \frac{1}{n} \sum_x 
       (a^L_j-y_j)
-}
 \end{align*}
 $$
 # Stochastic gradient descent
