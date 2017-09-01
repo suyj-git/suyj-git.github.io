@@ -73,9 +73,11 @@ $$
   & = &\frac{1}{n} \sum_x x_j(\sigma(z)-y)
 \end{eqnarray}
 $$
+
 since $\sigma'(z) = \sigma(z)(1-\sigma(z))$.
 
-Exception: When neurons in the final layer are *linear neurons*, the quadratic cost will not give rise to any problems with a learning slowdown since 
+Exception: When neurons in the final layer are *linear neurons*, the quadratic cost will not give rise to any problems with a learning slowdown since
+
 $$
 \begin{eqnarray}
       \frac{\partial C}{\partial w^L_{jk}} & = & \frac{1}{n} \sum_x 
