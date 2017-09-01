@@ -67,10 +67,10 @@ $$
  & = & -\frac{1}{n} \sum_x \left( 
     \frac{y}{\sigma(z)} 
     -\frac{(1-y)}{1-\sigma(z)} \right)\sigma'(z) x_j \\
-  & = \frac{1}{n}
+  & = &\frac{1}{n}
   \sum_x \frac{\sigma'(z) x_j}{\sigma(z) (1-\sigma(z))}
   (\sigma(z)-y) \\
-  & = \frac{1}{n} \sum_x x_j(\sigma(z)-y)
+  & = &\frac{1}{n} \sum_x x_j(\sigma(z)-y)
 \end{eqnarray}
 $$
 since $\sigma'(z) = \sigma(z)(1-\sigma(z))$.
