@@ -98,6 +98,6 @@ can not be used, either.
 
 To dump event content in /store/relval/CMSSW_9_3_0_pre5/RelValZMM_13/MINIAODSIM/93X_mc2017_realistic_v2-v1/00000/96FBB6F5-0E92-E711-841B-0025905B85C0.root, you should firstly go to [DAS](https://cmsweb.cern.ch/das/) and search by the PFN.
 Then clicking "Download" shown below,
-![](https://github.com/WestRice/westrice.github.io/blob/master/_posts/f1.jpg)
+![](https://github.com/WestRice/westrice.github.io/blob/master/_posts/f1.jpg?raw=true)
 and use the LFN shown below
-![](https://github.com/WestRice/westrice.github.io/blob/master/_posts/f2.jpg)
+![](https://github.com/WestRice/westrice.github.io/blob/master/_posts/f2.jpg?raw=true)
