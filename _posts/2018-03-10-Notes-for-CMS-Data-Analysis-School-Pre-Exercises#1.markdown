@@ -42,7 +42,62 @@ You shoule generate a ssh key for the remote host by following instructions [her
 
 In your terminal at lxplus.cern.ch, execute
 {%highlight bash%}
-$ git config --global user.name “Your name" 
-$ git config --global user.email “Your email”
-$ git config --global user.github “Your user name in Github”
+$ git config --global user.name "Your name" 
+$ git config --global user.email "Your email"
+$ git config --global user.github "Your user name in Github"
 {%endhighlight%}
+
+## CMS Configuration
+Put
+{%highlight bash%}
+$ source /cvmfs/cms.cern.ch/cmsset_default.csh #or .sh for bash
+{%endhighlight%}
+in your file ~/.bash_profile.
+
+Then
+{%highlight bash%}
+cd ~/nobackup
+mkdir YOURWORKINGAREA
+cd YOURWORKINGAREA
+cmsrel CMSSW_9_3_2
+cd CMSSW_9_3_2/src
+cmsenv
+git cms-init
+{%endhighlight%}
+
+## DAS(Data Aggregation System)
+You can find DAS [here](https://cmsweb.cern.ch/das/).
+
+To use DAS in your terminal, you should firstly
+{%highlight bash%}
+$ voms-proxy-init --voms cms
+{%endhighlight%}
+Then you can use DAS like this
+{%highlight bash%}
+das_client.py --query="dataset=/DoubleMuon*/Run2017C-PromptReco-v3/MINIAOD" --format=plain
+{%endhighlight%}
+
+More about DAS can be found [here](https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookDataSamples).
+
+##EDM
+After my testing, the LFN(logical file name) 
+
+root://eoscms.cern.ch//eos/cms/store/relval/CMSSW_9_3_0_pre5/RelValZMM_13/MINIAODSIM/93X_mc2017_realistic_v2-v1/00000/96FBB6F5-0E92-E711
+-841B-0025905B85C0.root
+
+returned by `edmFileUtil` command can *NOT* be used to dump event content by command
+{%highlight bash%}
+edmDumpEvent root://eoscms.cern.ch//eos/cms/store/relval/CMSSW_9_3_0_pre5/RelValZMM_13/MINIAODSIM/93X_mc2017_realistic_v2-v1/00000/96FBB6F5-0E92-E711
+-841B-0025905B85C0.root
+{%endhighlight%}
+. The PFN(physical file name) 
+
+/store/relval/CMSSW_9_3_0_pre5/RelValZMM_13/MINIAODSIM/93X_mc2017_realistic_v2-v1/00000/96FBB6F5-0E92-E711-841B-0025905B85C0.root
+
+can not be used, either.
+
+To dump event content in /store/relval/CMSSW_9_3_0_pre5/RelValZMM_13/MINIAODSIM/93X_mc2017_realistic_v2-v1/00000/96FBB6F5-0E92-E711-841B-0025905B85C0.root, you should firstly go to [DAS](https://cmsweb.cern.ch/das/) and search by the PFN.
+Then clicking "Download" shown below,
+![](https://github.com/WestRice/westrice.github.io/blob/master/_posts/f1.jpg)
+and use the LFN shown below
+![](https://github.com/WestRice/westrice.github.io/blob/master/_posts/f2.jpg)
