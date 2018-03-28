@@ -42,9 +42,10 @@ cmsenv
 
 To make a ZPeak from this executable, using the MC MiniAOD, run the following command (which will not work out of the box, see below):
 
-FWLiteHistograms inputFiles=slimMiniAOD_MC_MuEle.root outputFile=ZPeak_MC.root maxEvents=-1 outputEvery=100
+`FWLiteHistograms inputFiles=slimMiniAOD_MC_MuEle.root outputFile=ZPeak_MC.root maxEvents=-1 outputEvery=100`
+
 You can see that you will get the following error:
-{%hightlight bash%}
+{%highlight bash%}
 terminate called after throwing an instance of 'cms::Exception'
   what():  An exception of category 'ProductNotFound' occurred.
 Exception Message:
