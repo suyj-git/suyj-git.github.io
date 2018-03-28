@@ -3,7 +3,7 @@ layout: note
 ---
 Notes for [CMS Data Analysis School Pre-Exercises](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideCMSDataAnalysisSchoolPreExerciseFirstSet)
 
-*Making sure you have a CERN Grid Account before you reading this!*
+**Making sure you have a CERN Grid Account before you reading this!**
 
 ## Slim MiniOAD
 An example script for sliming MiniOAD:
@@ -56,7 +56,7 @@ Looking for productInstanceName:
 
 The data is registered in the file but is not available for this event
 {%endhighlight%}
-This error occurs because your input files slimMiniAOD_MC_MuEle.root is a MiniAOD and does *NOT* contain *reco::Muon* whose label is muons. 
-It contains, however, *slimmedMuons*.
+This error occurs because your input files slimMiniAOD_MC_MuEle.root is a MiniAOD and does **NOT** contain **reco::Muon** whose label is muons. 
+It contains, however, **slimmedMuons**.
 
-Open the code `$CMSSW_BASE/src/PhysicsTools/FWLite/bin/FWLiteHistograms.cc` to replace `reco::Muon` by `reco::slimmedMuons`.
+Open the code `$CMSSW_BASE/src/PhysicsTools/FWLite/bin/FWLiteHistograms.cc` to replace `reco::Muon` by `pat::Muon` and `event.getByLabel(std::string("muons"), muons)` by `event.getByLabel(std::string("slimmedMuons"), muons)`.
