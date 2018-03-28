@@ -3,7 +3,7 @@ layout: note
 ---
 Notes for [CMS Data Analysis School Pre-Exercises](https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideCMSDataAnalysisSchoolPreExerciseFirstSet)
 
-*Making sure you have a CERN Grid Account before you reading this!*
+**Making sure you have a CERN Grid Account before you reading this!**
 
 ## Grid Certificate and CMS VO registration
 Both of grid certificate and CMS VO registration is needed for visiting DAS(Data Aggregation System).
