@@ -101,3 +101,15 @@ Then clicking "Download" shown below,
 ![](https://github.com/WestRice/westrice.github.io/blob/master/_posts/f1.jpg?raw=true)
 and use the LFN shown below
 ![](https://github.com/WestRice/westrice.github.io/blob/master/_posts/f2.jpg?raw=true)
+
+## MiniOAD
+The main contents of the MiniAOD are:
+
+- High level physics objects (leptons, photons, jets, ETmiss), with detailed information in order to allow e.g. retuning of identification criteria, saved using PAT dataformats. 
+Some preselection requirements are applied on the objects, and objects failing these requirements are either not stored or stored only with a more limited set of information. 
+- Some high level corrections are applied: L1+L2+L3(+residual) corrections to jets, type1 corrections to ETmiss.
+The full list of particles reconstructed by the ParticleFlow, though only storing the most basic quantities for each object (4-vector, impact parameter, pdg id, some quality flags), and with reduced numerical precision; these are useful to recompute isolation, or to perform jet substructure studies. 
+- For charged particles with pT > 0.9 GeV, more information about the associated track is saved, including the covariance matrix, so that they can be used for b-tagging purposes.
+- MC Truth information: a subset of the genParticles enough to describe the hard scattering process, jet flavour information, and final state leptons and photons; GenJets with pT > 8 GeV are also stored, and so are the other mc summary information (e.g event weight, LHE header, PDF, PU information). 
+- In addition, all the stable genParticles with mc status code 1 are also saved, to allow reclustering of GenJets with different algorithms and substructure studies.
+- Trigger information: MiniAOD contains the trigger bits associated to all paths, and all the trigger objects that have contributed to firing at least one filter within the trigger. In addition, we store all objects reconstructed at L1 and the L1 global trigger summary, and the prescale values of all the triggers.
