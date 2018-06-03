@@ -218,7 +218,7 @@ To fit a generator-level Z peak a Breit-Wigner fit makes sense. However, reconst
 * If you have backgrounds in your sample (Drell-Yan, cosmics, etc...), and you want to do the fit over a large mass range, then another function needs to be included to take care of this - an exponential is commonly used.
 
 # Use a macro in RooFit
-You can find more about RooFit in ![twiki](https://twiki.cern.ch/twiki/bin/view/CMS/RooFit).
+You can find more about RooFit in [twiki](https://twiki.cern.ch/twiki/bin/view/CMS/RooFit).
 
 Add the following line to you rootlogon.C:
 {%highlight C++%}
