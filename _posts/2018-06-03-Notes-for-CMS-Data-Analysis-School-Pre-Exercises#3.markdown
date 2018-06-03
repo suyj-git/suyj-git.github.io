@@ -44,7 +44,7 @@ config.Data.outputDatasetTag = 'CMSDAS2018_CRAB3_MC_generation_test0'
 
 config.section_("Site")
 config.Site.storageSite = 'T2_CN_Beijing'
-{%endhighlight}
+{%endhighlight%}
 
 Then execute
 {%highlight bash%}
