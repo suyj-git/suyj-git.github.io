@@ -199,4 +199,98 @@ Add the following lines to your `rootlogon.C` in your home directory
 
 
 The different distribution that we would fit to the Z mass peak are:
+
+* Gaussian 
 $$G(x;\mu,\sigma)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right]$$
+
+* Relativistic Breit-Wigner
+$$B(m;M,\Gamma)=N\frac{2}{\pi}\frac{\Gamma^2M^2}{(m^2-M^2)^2+m^4(\Gamma^2/M^2)}$$
+
+* Convolution of relativistic Breit-Wigner plus interference term with a Gaussian
+$$P(m)=\int B(m';M,\Gamma)G(m-m';\mu,\sigma)d m'$$
+
+Some general remarks about fitting a Z peak:
+
+To fit a generator-level Z peak a Breit-Wigner fit makes sense. However, reconstructed-level Z peaks have many detector resolutions that smear the Z mass peak. 
+
+* If the detector resolution is relatively poor, then it is usually good enough to fit a gaussian (since the gaussian detector resolution will overwhelm the inherent Briet-Wigner shape of the peak). 
+* If the detector resolution is fairly good, then another option is to fit a Breit-Wigner (for the inherent shape) convoluted with a gaussian (to describe the detector effects).This is in the "no-background" case. 
+* If you have backgrounds in your sample (Drell-Yan, cosmics, etc...), and you want to do the fit over a large mass range, then another function needs to be included to take care of this - an exponential is commonly used.
+
+# Use a macro in RooFit
+You can find more about RooFit in ![twiki](https://twiki.cern.ch/twiki/bin/view/CMS/RooFit).
+
+Add the following line to you rootlogon.C:
+{%highlight C++%}
+ gROOT->ProcessLine(".include /cvmfs/cms.cern.ch/slc6_amd64_gcc491/lcg/roofit/5.34.18-cms3/include/");
+{%endhighlight%}
+
+Here is an example of a macro using RooFit:
+{%highlight C++%}
+#include "RooGlobalFunc.h"
+#include "RooRealVar.h"
+#include "RooDataSet.h"
+#include "RooDataHist.h"
+#include "RooGaussian.h"
+#include "TCanvas.h"
+#include "RooPlot.h"
+#include "TTree.h"
+#include "TH1D.h"
+#include "TRandom.h"
+using namespace RooFit ;
+
+void RooFit2(){
+  gROOT->ProcessLine(".x ~/rootlogon.C");
+  gStyle->SetOptFit(0);
+
+  TFile *f = new TFile("myZPeakCRAB.root","READ");
+  //f.cd("analyzeBasicPat");
+  TH1F *Z_mass=(TH1F*)f->Get("analyzeBasicPat/mumuMass");
+
+  Z_mass->Draw();
+
+  // double hmin = Z_mass->GetXaxis()->GetXmin();
+  // double hmax = Z_mass->GetXaxis()->GetXmax();
+
+  float hmin = 80.0;
+  float hmax = 100.0;
+
+
+  // Declare observable x
+  RooRealVar x("x","x",hmin,hmax) ;
+  RooDataHist dh("dh","dh",x,Import(*Z_mass)) ;
+
+  RooPlot* frame = x.frame(Title("Z mass")) ;
+  dh.plotOn(frame,MarkerColor(2),MarkerSize(0.9),MarkerStyle(21));  //this will show histogram data points on canvas 
+  dh.statOn(frame);  //this will display hist stat on canvas
+
+  RooRealVar mean("mean","mean",95.0, 70.0, 120.0);
+  RooRealVar width("width","width",5.0, 0.0, 120.0);
+  RooRealVar sigma("sigma","sigma",5.0, 0.0, 120.0);
+  //RooGaussian gauss("gauss","gauss",x,mean,sigma);
+  //RooBreitWigner gauss("gauss","gauss",x,mean,sigma);
+  RooVoigtian gauss("gauss","gauss",x,mean,width,sigma);
+
+  RooFitResult* filters = gauss.fitTo(dh,"qr");
+  gauss.plotOn(frame,LineColor(4));//this will show fit overlay on canvas 
+  gauss.paramOn(frame); //this will display the fit parameters on canvas
+  //filters->Print("v");
+
+  // Draw all frames on a canvas
+  TCanvas* c = new TCanvas("ZmassHisto","ZmassHisto",770,700) ;
+  c->cd() ; gPad->SetLeftMargin(0.15);
+
+  frame->GetXaxis()->SetTitle("Z mass (in GeV/c^{2})");  frame->GetXaxis()->SetTitleOffset(1.2);
+  frame->Draw() ;
+  c->SaveAs("myZmaa.png");  
+  //float binsize = Z_mass->GetBinWidth(1); char Bsize[50]; 
+  /*
+  //sprintf(Bsize,"Events per %2.2f",binsize);
+  // frame->GetYaxis()->SetTitle(Bsize);  
+  //frame->GetYaxis()->SetTitleOffset(1.2);
+  frame->Draw() ;
+  //c->SaveAs("myZmaa.png");  
+  */
+
+}
+{%endhighlight%}
