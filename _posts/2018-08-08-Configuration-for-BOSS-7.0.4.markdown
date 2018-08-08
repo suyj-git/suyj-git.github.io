@@ -20,7 +20,7 @@ Make a directory named `cmthome` in your home directory(in this case, it is `/af
 then 
 {%highlight bash%}
 cp -r /afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-7.0.4/ /afs/ihep.ac.cn/users/alice/cmthome/
-{%endhightlight%}
+{%endhighlight%}
 
 You need modify the file `requirements` in the `cmthome-7.0.4` by deleting the symbol `#` ahead of the three lines listed below
 {%highlight bash%}
@@ -36,7 +36,7 @@ source setupCMT.sh
 cmt config
 source setup.sh
 source setupCVS.sh
-{%endhightlight%}
+{%endhighlight%}
 
 Use `echo $CMTPATH` to check if your configuration is sucessful. If your work area is printed, the configuration is done.
 
@@ -46,7 +46,7 @@ Change directory(`cd`) to `TestRelease/TestRelease-00-00-78/cmt` then
 {%highlight bash%}
 cmt config
 source setup.sh
-{%endhightlight%}
+{%endhighlight%}
 
 Use `echo $TESTRELEASEROOT` to check if the environment is OK.
 
