@@ -27,4 +27,4 @@ $$\Lambda \rightarrow p + \pi^-$$
 
 
 $$\pi^0 \rightarrow \gamma + \gamma$$
-* Fraction: $(98.823 \pm 0.034)\%$ Form [PDG](http://pdglive.lbl.gov/Particle.action?init=0&node=S009&home=MXXX005)
+* Fraction: $(98.823 \pm 0.034)\%$ From [PDG](http://pdglive.lbl.gov/Particle.action?init=0&node=S009&home=MXXX005)
