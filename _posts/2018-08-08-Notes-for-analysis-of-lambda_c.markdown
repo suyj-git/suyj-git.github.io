@@ -12,7 +12,7 @@ $$\Sigma^0 \rightarrow \gamma \Lambda$$
 
 $$\eta \rightarrow \gamma \gamma$$
 
-# Basical Information
+## Basical Information
 
 $$\Sigma^0 \rightarrow \gamma \Lambda$$
 * Fraction: $(100)\%$ From [PDG](http://pdglive.lbl.gov/Particle.action?init=0&node=S021&home=BXXX025)
@@ -29,24 +29,24 @@ $$\Lambda \rightarrow p + \pi^-$$
 $$\pi^0 \rightarrow \gamma + \gamma$$
 * Fraction: $(98.823 \pm 0.034)\%$ From [PDG](http://pdglive.lbl.gov/Particle.action?init=0&node=S009&home=MXXX005)
 
-# Cut information
-## Good track
+## Cut information
+# Good track
 vr < 1  Vz < 10  theta < 0.93
 
-## Good track for lambda
+# Good track for lambda
 Vz < 20 theta < 0.93
 
 
-## Good shower
+# Good shower
 
 
-## Good pi0
+# Good pi0
 0.115 < (pShr1+pShr2).m() < 0.150
 constrain: pi0_mass = 0.134976
 pi0_chis <= 2500
 
 
-## Good lambda
+# Good lambda
 After primary vertex fit, use updated pProton ,pPion and chisq_1 to cut
 1.111 < (pProton+pPion).m() < 1.21
 chisq_1 < 100
