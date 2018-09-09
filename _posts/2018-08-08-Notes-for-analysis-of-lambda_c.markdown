@@ -48,14 +48,14 @@ pi0_chis <= 2500
 
 # Good lambda
 After primary vertex fit, use updated pProton ,pPion and chisq_1 to cut
-1.111 < (pProton+pPion).m() < 1.21
+1.111 < (pProton+pPion).m() < 1.121
 chisq_1 < 100
 
 After second vertex fit, use lchue = dl/de to cut
 lchue > 2
 
 
-## Good sigma0
+# Good sigma0
 1.179 < (pLambda_from_second_vertex_fit + pShr).m() < 1.203
 constrain: sigma0_mass = 1.19264
 sigma0_chis <= 2500
